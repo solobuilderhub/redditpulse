@@ -6,9 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
 
-const SubredditSearch = ({ onSubredditSelect }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-
+const SubredditSearch = ({ onSubredditSelect, searchTerm, setSearchTerm }) => {
   const searchSubreddits = async (term) => {
     const response = await fetch(
       `https://www.reddit.com/subreddits/search.json?q=${term}`

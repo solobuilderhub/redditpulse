@@ -8,15 +8,13 @@ import {
   User,
   Calendar,
   MessageSquare,
-  Users,
-  RefreshCw,
   CreditCard,
   AlertTriangle,
   CheckCircle,
   XCircle,
   XIcon,
   UserCircle,
-} from "lucide-react"
+} from "lucide-react";
 
 const DashboardPage = async () => {
   const session = await auth();
@@ -94,16 +92,7 @@ const DashboardPage = async () => {
           title="Available AI Comments"
           value={user?.availableRequest}
         />
-        <DashboardCard
-          icon={<Users className="h-6 w-6 text-green-600" />}
-          title="Available Prospects"
-          value={user?.maxMonitors}
-        />
-        <DashboardCard
-          icon={<RefreshCw className="h-6 w-6 text-blue-600" />}
-          title="LinkedIn Post Scraping Limit"
-          value={user?.linkedinApiCalls}
-        />
+
         <DashboardCard
           icon={<User className="h-6 w-6 text-purple-600" />}
           title="Persona Count"
@@ -121,7 +110,7 @@ const DashboardPage = async () => {
             value={formatDate(user?.subscriptionEndDate)}
           />
         )}
-        
+
         {user?.num_twitter_req && (
           <DashboardCard
             icon={<XIcon className="h-6 w-6 text-blue-400" />}
@@ -132,92 +121,102 @@ const DashboardPage = async () => {
       </div>
 
       <div className="mt-8 space-y-4">
-  {user?.subscriptionStatus === "trialing" && (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-xl font-semibold">Subscription Status</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <SubscriptionMessage
-          icon={<AlertTriangle className="h-6 w-6 text-yellow-500" />}
-          message="You are currently on a trial account. Upgrade to unlock more features!"
-          buttonText="Subscribe to a Plan"
-          buttonLink="/dashboard/subscription"
-        />
-      </CardContent>
-    </Card>
-  )}
+        {user?.subscriptionStatus === "trialing" && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold">
+                Subscription Status
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <SubscriptionMessage
+                icon={<AlertTriangle className="h-6 w-6 text-yellow-500" />}
+                message="You are currently on a trial account. Upgrade to unlock more features!"
+                buttonText="Subscribe to a Plan"
+                buttonLink="/dashboard/subscription"
+              />
+            </CardContent>
+          </Card>
+        )}
 
-  {user?.subscriptionStatus === "active" && (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-xl font-semibold">Subscription Status</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <SubscriptionMessage
-          icon={<CheckCircle className="h-6 w-6 text-green-500" />}
-          message="Your subscription is active. Enjoy all the features!"
-          buttonText="Manage Subscription"
-          buttonLink="/dashboard/subscription"
-        />
-      </CardContent>
-    </Card>
-  )}
+        {user?.subscriptionStatus === "active" && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold">
+                Subscription Status
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <SubscriptionMessage
+                icon={<CheckCircle className="h-6 w-6 text-green-500" />}
+                message="Your subscription is active. Enjoy all the features!"
+                buttonText="Manage Subscription"
+                buttonLink="/dashboard/subscription"
+              />
+            </CardContent>
+          </Card>
+        )}
 
-  {(user?.subscriptionStatus === "canceled" ||
-    user?.subscriptionStatus === "past_due") && (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-xl font-semibold">Subscription Status</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <SubscriptionMessage
-          icon={<XCircle className="h-6 w-6 text-red-500" />}
-          message="Your subscription has ended. Renew to access premium features!"
-          buttonText="Renew Subscription"
-          buttonLink="/dashboard/subscription"
-        />
-      </CardContent>
-    </Card>
-  )}
+        {(user?.subscriptionStatus === "canceled" ||
+          user?.subscriptionStatus === "past_due") && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold">
+                Subscription Status
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <SubscriptionMessage
+                icon={<XCircle className="h-6 w-6 text-red-500" />}
+                message="Your subscription has ended. Renew to access premium features!"
+                buttonText="Renew Subscription"
+                buttonLink="/dashboard/subscription"
+              />
+            </CardContent>
+          </Card>
+        )}
 
-  {user?.subscriptionPlan === "free" && (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-xl font-semibold">Subscription Status</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <SubscriptionMessage
-          icon={<AlertTriangle className="h-6 w-6 text-blue-500" />}
-          message="Upgrade to a paid plan for more AI comments and features!"
-          buttonText="Compare Plans"
-          buttonLink="/dashboard/subscription"
-        />
-      </CardContent>
-    </Card>
-  )}
+        {user?.subscriptionPlan === "free" && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold">
+                Subscription Status
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <SubscriptionMessage
+                icon={<AlertTriangle className="h-6 w-6 text-blue-500" />}
+                message="Upgrade to a paid plan for more AI comments and features!"
+                buttonText="Compare Plans"
+                buttonLink="/dashboard/subscription"
+              />
+            </CardContent>
+          </Card>
+        )}
 
-  {user?.subscriptionStatus === "active" && (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-xl font-semibold">Current Plan Benefits</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="mt-4">
-          <h3 className="text-lg font-semibold mb-2">
-            Current Plan Benefits:
-          </h3>
-          <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-            <li>{user?.availableRequest} AI generated comments</li>
-            <li>{user?.linkedinApiCalls} LinkedIn post scrapes</li>
-            <li>{user?.maxMonitors} monitored prospects</li>
-          </ul>
-        </div>
-      </CardContent>
-    </Card>
-  )}
-</div>
-
+        {user?.subscriptionStatus === "active" && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold">
+                Current Plan Benefits
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="mt-4">
+                <h3 className="text-lg font-semibold mb-2">
+                  Current Plan Benefits:
+                </h3>
+                <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
+                  <li>AI generated comments</li>
+                  <li>Convenient subreddit search</li>
+                  <li>Tracking of comment</li>
+                  <li>Maximum token generation limit.</li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+      </div>
     </div>
   );
 };

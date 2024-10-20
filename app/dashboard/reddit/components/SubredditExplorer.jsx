@@ -10,6 +10,7 @@ import PostTypeSelector from "./PostTypeSelector";
 import PostTable from "./PostTable";
 
 const SubredditExplorer = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedSubreddits, setSelectedSubreddits] = useLocalStorage(
     "selectedSubreddits",
     []
@@ -48,6 +49,7 @@ const SubredditExplorer = () => {
       setSelectedSubreddits([...selectedSubreddits, subreddit]);
     }
     setActiveSubreddit(subreddit);
+    setSearchTerm("");
   };
 
   const handleRemoveSubreddit = (subreddit) => {
@@ -66,7 +68,11 @@ const SubredditExplorer = () => {
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Subreddit Explorer</h1>
 
-      <SubredditSearch onSubredditSelect={handleSubredditSelect} />
+      <SubredditSearch
+        onSubredditSelect={handleSubredditSelect}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
 
       <SubredditTags
         selectedSubreddits={selectedSubreddits}

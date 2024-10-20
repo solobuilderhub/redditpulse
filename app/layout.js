@@ -6,7 +6,7 @@ import GoogleAnalytics from "@/components/GoogleAnalytics";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "RedditPuls - Boost Your Reddit Engagement",
+  title: "RedditPulse - Boost Your Reddit Engagement",
   description:
     "Generate AI-powered comments for Reddit and monitor subreddits with our powerful web extension.",
   icon: "/redditpulse-icon.png",
