@@ -43,14 +43,13 @@ const CommentTracker = () => {
         const response = await fetch(apiUrl);
         const data = await response.json();
         const commentData = data[1].data.children[0].data;
-
+        // console.log("commentData", commentData);
         return {
           ...comment,
+          body: commentData.body,
           upvotes: commentData.ups,
           organicTraffic: commentData.score,
-          affiliateStatus: commentData.removed_by_category
-            ? "Removed"
-            : "Active",
+          status: commentData.removed_by_category ? "Removed" : "Active",
           isFromManagedPost: isCommentFromManagedPost(comment.url),
         };
       } catch (error) {

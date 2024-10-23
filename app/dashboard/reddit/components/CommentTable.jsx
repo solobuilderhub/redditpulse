@@ -24,6 +24,8 @@ const CommentTable = ({
     return title.substring(0, maxLength - 3) + "...";
   };
 
+  // console.log("comments", comments);
+
   return (
     <Table>
       <TableHeader>
@@ -33,7 +35,7 @@ const CommentTable = ({
           <TableHead>Subreddit</TableHead>
           <TableHead>Post Title</TableHead>
           <TableHead>Upvotes</TableHead>
-          <TableHead>Affiliate Status</TableHead>
+          <TableHead>Status</TableHead>
           <TableHead>Actions</TableHead>
         </TableRow>
       </TableHeader>
@@ -56,9 +58,9 @@ const CommentTable = ({
                 href={comment.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
+                className="text-blue-600 hover:underline truncate"
               >
-                {shortenTitle(comment.postTitle || "Untitled Post")}
+                {shortenTitle(comment.body || "Untitled Post")}
               </a>
               {comment.isFromManagedPost && (
                 <Star className="inline-block ml-2 h-4 w-4 text-yellow-500" />
@@ -68,7 +70,7 @@ const CommentTable = ({
               <ArrowUp className="mr-1 h-4 w-4 text-green-500" />
               {comment.upvotes}
             </TableCell>
-            <TableCell>{comment.affiliateStatus}</TableCell>
+            <TableCell>{comment.status}</TableCell>
             <TableCell>
               <Button
                 onClick={() => onRemoveComment(comment.id)}
