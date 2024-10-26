@@ -5,5 +5,5 @@ import { authConfig } from "@/app/(auth)/auth.config";
 export default NextAuth(authConfig).auth;
 
 export const config = {
-  matcher: ["/", "/dashboard", "/api/:path*", "/login", "/register"],
+  matcher: ["/", "/dashboard/:path*", "/api/:path*", "/login", "/register"],
 };
