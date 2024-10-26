@@ -8,7 +8,7 @@ import { UserMenu } from "../user-menu";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
-export async function MobileMenu() {
+export function MobileMenu() {
   const { data: session } = useSession();
 
   return (

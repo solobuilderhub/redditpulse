@@ -48,7 +48,8 @@ export default function FAQ() {
           Frequently Asked Questions
         </h2>
         <p className="text-xl text-center mb-12 text-gray-700">
-          Curious about our Reddit AI Comment Generator? We've got you covered.
+          Curious about our Reddit AI Comment Generator? We&apos;ve got you
+          covered
         </p>
         <div className="max-w-3xl mx-auto">
           {faqs.map((faq, index) => (

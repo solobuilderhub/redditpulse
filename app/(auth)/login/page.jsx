@@ -50,7 +50,7 @@ export default function Page() {
               href="/register"
               className="block text-sm text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
             >
-              Don't have an account? Sign up
+              Don&apos;t have an account? Sign up
             </Link>
             <Link
               href="/forgot-password"

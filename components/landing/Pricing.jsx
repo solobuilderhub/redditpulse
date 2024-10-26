@@ -27,7 +27,7 @@ const plans = [
   },
   {
     name: "Redditor Pro",
-    price: "$19.99",
+    price: "$50",
     period: "per month",
     features: [
       { text: "Unlimited AI-generated comments", included: true },

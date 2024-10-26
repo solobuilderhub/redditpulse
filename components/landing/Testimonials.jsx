@@ -41,7 +41,7 @@ export default function Testimonials() {
               <div className="flex flex-col bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 relative overflow-hidden flex-grow">
                 <Quote className="absolute top-4 right-4 h-12 w-12 text-orange-100" />
                 <p className="text-gray-700 mb-6 relative z-10">
-                  "{testimonial.content}"
+                  &quot;{testimonial.content}&quot;
                 </p>
                 <div className="flex items-center mt-auto">
                   <div className="w-16 h-16 rounded-full bg-orange-500 flex items-center justify-center mr-4">
