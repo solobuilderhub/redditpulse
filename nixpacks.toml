@@ -1,5 +1,0 @@
-[phases.setup]
-nixPkgs = ['nodejs', 'npm']
-
-[phases.install]
-cmds = ['npm i --legacy-peer-deps']
