@@ -1,6 +1,20 @@
 "server-only";
 
+import { handleApiRequest } from "./api-handler";
+
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+export const forgetPassApi = async (data) => {
+  return handleApiRequest("POST", "/auth/forgot-password", {
+    body: data,
+  });
+};
+
+export const resetPassApi = async (data) => {
+  return handleApiRequest("POST", "/auth/reset-password", {
+    body: data,
+  });
+};
 
 export const getUser = async (email) => {
   const endpoint = "/auth/getUser";

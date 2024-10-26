@@ -7,16 +7,16 @@ export function ResetPasswordForm() {
     <div className="space-y-4">
       <div>
         <Label
-          htmlFor="newPassword"
+          htmlFor="password"
           className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
         >
           New Password
         </Label>
         <Input
           className="mt-1 block w-full"
-          id="newPassword"
+          id="password"
           type="password"
-          name="newPassword"
+          name="password"
           placeholder="••••••••"
           required
           minLength={6}
