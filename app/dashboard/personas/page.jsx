@@ -5,6 +5,7 @@ import PersonaMain from "./components/persona-main";
 import { PlusCircle } from "lucide-react";
 import { getPersonas } from "@/api/personas";
 import { IconButton } from "@/components/ui/icon-button";
+import { notFound } from "next/navigation";
 
 export default async function PersonaPage() {
   const session = await auth();

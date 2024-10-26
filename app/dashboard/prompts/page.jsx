@@ -5,6 +5,7 @@ import { PlusCircle } from "lucide-react";
 import { getPrompts } from "@/api/prompts";
 import PromptMain from "./components/prompt-main";
 import { IconButton } from "@/components/ui/icon-button";
+import { notFound } from "next/navigation";
 
 export default async function PersonaPage() {
   const session = await auth();

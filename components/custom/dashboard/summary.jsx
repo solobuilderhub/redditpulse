@@ -10,7 +10,6 @@ import {
   AlertTriangle,
   CheckCircle,
   XCircle,
-  XIcon,
 } from "lucide-react";
 
 export const Summary = async ({ user }) => {
@@ -79,14 +78,6 @@ export const Summary = async ({ user }) => {
             icon={<CreditCard className="h-6 w-6 text-red-600" />}
             title="Subscription End Date"
             value={formatDate(user?.subscriptionEndDate)}
-          />
-        )}
-
-        {user?.num_twitter_req && (
-          <DashboardCard
-            icon={<XIcon className="h-6 w-6 text-blue-400" />}
-            title="Twitter Requests"
-            value={user?.num_twitter_req}
           />
         )}
       </div>
