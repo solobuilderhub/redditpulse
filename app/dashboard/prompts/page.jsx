@@ -1,10 +1,10 @@
 import { PageHeader } from "@/components/custom/dashboard/page-header";
 import { auth } from "@/app/(auth)/auth";
-import IconButton from "@/components/ui/icon-button";
 import Link from "next/link";
 import { PlusCircle } from "lucide-react";
 import { getPrompts } from "@/api/prompts";
 import PromptMain from "./components/prompt-main";
+import { IconButton } from "@/components/ui/icon-button";
 
 export default async function PersonaPage() {
   const session = await auth();
@@ -28,8 +28,9 @@ export default async function PersonaPage() {
           <h1 className="font-semibold text-xl">Prompts</h1>
           <div className="ml-auto">
             <Link href="/dashboard/prompts/create">
-              <IconButton icon={<PlusCircle className="h-4 w-4" />}>
-                Add Prompt
+              <IconButton>
+                <PlusCircle className="h-4 w-4" />
+                <span>Add New</span>
               </IconButton>
             </Link>
           </div>

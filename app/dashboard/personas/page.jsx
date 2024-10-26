@@ -1,10 +1,10 @@
 import { PageHeader } from "@/components/custom/dashboard/page-header";
 import { auth } from "@/app/(auth)/auth";
-import IconButton from "@/components/ui/icon-button";
 import Link from "next/link";
 import PersonaMain from "./components/persona-main";
 import { PlusCircle } from "lucide-react";
 import { getPersonas } from "@/api/personas";
+import { IconButton } from "@/components/ui/icon-button";
 
 export default async function PersonaPage() {
   const session = await auth();
@@ -28,8 +28,9 @@ export default async function PersonaPage() {
           <h1 className="font-semibold text-xl">Personas</h1>
           <div className="ml-auto">
             <Link href="/dashboard/personas/create">
-              <IconButton icon={<PlusCircle className="h-4 w-4" />}>
-                Add Persona
+              <IconButton>
+                <PlusCircle className="h-4 w-4" />
+                <span>Add New</span>
               </IconButton>
             </Link>
           </div>
