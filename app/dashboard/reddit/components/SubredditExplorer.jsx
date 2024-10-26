@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { useRedditContext } from "../RedditContext";
-import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 import SubredditSearch from "./SubredditSearch";
 import SubredditTags from "./SubredditTags";
 import PostTypeSelector from "./PostTypeSelector";

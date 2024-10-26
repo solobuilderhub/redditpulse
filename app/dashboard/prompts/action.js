@@ -1,38 +1,46 @@
 "use server";
-
-import { authRequest } from "@/lib/data/authRequest";
+import { createPrompt, deletePrompt, editPrompt } from "@/api/prompts";
+import { auth } from "@/app/(auth)/auth";
 import { revalidatePath } from "next/cache";
 
 export const promptAction = async (values, action, id = null) => {
-  const { name, text } = values;
-  const data = { name, text };
+  const session = await auth();
+  const { job, industry, niche, experience, expertise } = values;
+  const data = {
+    job,
+    industry,
+    niche,
+    experience,
+    expertise,
+  };
 
   let response;
   if (action === "create") {
-    response = await authRequest("/prompt", "POST", data);
-    if (response.error) {
+    response = await createPrompt(data, session.accessToken);
+
+    if (response?.error) {
       return { error: "Failed to add prompt" };
     }
-    revalidatePath("/dashboard/prompts");
+    revalidatePath("/dashboard/prompts"); // create new persona
     return { success: "Prompt added successfully" };
   }
 
   if (action === "edit") {
-    response = await authRequest(`/prompt/${id}`, "PUT", data);
+    response = await editPrompt(id, data, session.accessToken);
     if (response.error) {
-      return { error: "Failed to update prompt" };
+      return { error: "Failed to update store" };
     }
-    revalidatePath("/dashboard/prompts");
+    revalidatePath("/dashboard/prompts"); // update persona
     return { success: "Prompt updated successfully" };
   }
 
   if (action === "delete") {
-    response = await authRequest(`/prompt/${id}`, "DELETE");
+    response = await deletePrompt(id, session.accessToken);
     if (response.error) {
       return { error: "Failed to delete prompt" };
     }
-    revalidatePath("/dashboard/prompts");
-    return { success: "Prompt deleted successfully" };
+    revalidatePath("/dashboard/prompts"); // delete persona
+    return { success: "Persona deleted successfully" };
   }
 
   return { error: "Invalid action" };

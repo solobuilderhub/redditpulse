@@ -1,5 +1,9 @@
-//
+import NextAuth from "next-auth";
 
-export default function middleware(req) {
-  return null;
-}
+import { authConfig } from "@/app/(auth)/auth.config";
+
+export default NextAuth(authConfig).auth;
+
+export const config = {
+  matcher: ["/", "/dashboard", "/api/:path*", "/login", "/register"],
+};

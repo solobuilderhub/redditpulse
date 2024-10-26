@@ -24,7 +24,7 @@ export function PersonaForm({ action, item }) {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isPending, startTransition] = useTransition();
-  const router = useRouter(); 
+  const router = useRouter();
 
   const form = useForm({
     resolver: zodResolver(PersonaSchema),
@@ -47,7 +47,7 @@ export function PersonaForm({ action, item }) {
         } else {
           setSuccess(data?.success);
           toast.success("Persona updated successfully");
-          router.push("/dashboard/prompts"); 
+          router.push("/dashboard/personas");
         }
       });
     });

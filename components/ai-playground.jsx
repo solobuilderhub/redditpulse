@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, Send, Loader2 } from "lucide-react";
-import useStreamApi from "@/lib/hooks/useStreamApi";
+import useStreamApi from "@/hooks/useStreamApi";
 import { Textarea } from "./ui/textarea";
 import { motion, AnimatePresence } from "framer-motion";
 

@@ -7,10 +7,10 @@ export const plans = [
   {
     link: process.env.NEXT_PUBLIC_STRIPE_PLAN_MONTHLY_URL,
     priceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID,
-    price: 20,
+    price: 50,
     duration: "/month",
     features: [
-      "1000 AI credits",
+      "5000 AI credits",
       "99 LinkedIn User monitoring",
       "Priority support",
       "Advanced analytics",
@@ -19,9 +19,9 @@ export const plans = [
   },
   {
     link: process.env.NEXT_PUBLIC_STRIPE_PLAN_YEARLY_URL,
-    priceId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID,
-    price: 200,
-    duration: "/year",
+    priceId: process.env.NEXT_PUBLIC_STRIPE_QUARTER_PRICE_ID,
+    price: 120,
+    duration: "/3 months",
     features: [
       "Unlimited AI credits (Fair Use Policy)",
       "Unlimited LinkedIn User monitoring",
@@ -37,24 +37,27 @@ const PricingCard = ({ email, userToken }) => {
 
   const handleUpgrade = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/stripe/create-checkout-session`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${userToken}`,
-        },
-        body: JSON.stringify({
-          priceId: plan.priceId,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/stripe/create-checkout-session`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userToken}`,
+          },
+          body: JSON.stringify({
+            priceId: plan.priceId,
+          }),
+        }
+      );
       const session = await response.json();
       if (session.url) {
         window.location.href = session.url;
       } else {
-        console.error('Error creating checkout session:', session.error);
+        console.error("Error creating checkout session:", session.error);
       }
     } catch (error) {
-      console.error('Error creating checkout session:', error);
+      console.error("Error creating checkout session:", error);
     }
   };
 
@@ -86,7 +89,7 @@ const PricingCard = ({ email, userToken }) => {
                   <span className="ml-2 text-sm font-medium text-gray-700">
                     {p.duration === "/month"
                       ? "Monthly"
-                      : "Yearly (60% OFF 💰)"}
+                      : "3 months (Save $30 💰)"}
                   </span>
                 </label>
               ))}

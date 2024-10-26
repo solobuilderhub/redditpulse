@@ -1,6 +1,6 @@
 "use client";
 import React, { createContext, useContext } from "react";
-import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 const RedditContext = createContext();
 

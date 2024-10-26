@@ -1,19 +1,19 @@
-"use client"
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { promptAction } from './action';
-import { toast } from 'sonner';
+"use client";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { promptAction } from "./action";
+import { toast } from "sonner";
 
 export function useDeletePrompt() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id) => promptAction({}, 'delete', id),
+    mutationFn: (id) => promptAction({}, "delete", id),
     onSuccess: () => {
-      queryClient.invalidateQueries(['prompts']);
-      toast.success('Prompt deleted successfully');
+      queryClient.invalidateQueries(["prompts"]);
+      toast.success("Persona deleted successfully");
     },
     onError: (error) => {
-      toast.error(error.message || 'Failed to delete prompt');
+      toast.error(error.message || "Failed to delete persona");
     },
   });
 }
