@@ -20,13 +20,14 @@ import { promptAction } from "../action";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import SimpleTextarea from "@/components/form-utils/simple-textarea";
 
 export function PromptForm({ action, item }) {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
-  
+
   const form = useForm({
     resolver: zodResolver(PromptSchema),
     defaultValues: {
@@ -57,9 +58,7 @@ export function PromptForm({ action, item }) {
         <CardTitle className="text-2xl">
           {action === "create" ? "Add a new Prompt" : "Edit Prompt"}
         </CardTitle>
-        <CardDescription>
-          Enter the details of the prompt below
-        </CardDescription>
+        <CardDescription>Enter the details of the prompt below</CardDescription>
       </CardHeader>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -71,7 +70,7 @@ export function PromptForm({ action, item }) {
               label="Prompt Name"
               placeholder="e.g., Question"
             />
-            <SimpleInput
+            <SimpleTextarea
               control={form.control}
               disabled={isPending}
               name="text"

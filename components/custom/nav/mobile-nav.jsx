@@ -1,6 +1,6 @@
 // components/navbar/mobile-nav.tsx
-
-import { Menu } from "lucide-react";
+"use client";
+import { LogOut, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -10,8 +10,9 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
 
-export function MobileNav({ session }) {
+export function MobileNav({ user }) {
   return (
     <Sheet>
       <SheetTitle className="sr-only">Menu</SheetTitle>
@@ -38,10 +39,10 @@ export function MobileNav({ session }) {
               Pricing
             </Link>
           </SheetClose>
-          {session ? (
+          {user ? (
             <div className="space-y-3">
               <div className="px-2 py-1 text-sm text-gray-500">
-                {session.user?.email}
+                {user?.email}
               </div>
               <SheetClose asChild>
                 <Link
@@ -51,21 +52,17 @@ export function MobileNav({ session }) {
                   Dashboard
                 </Link>
               </SheetClose>
-              <form
-                action={async () => {
-                  "use server";
-                  await signOut({
+              <div
+                className="w-full flex gap-3"
+                onClick={() => {
+                  signOut({
                     redirectTo: "/",
                   });
                 }}
               >
-                <button
-                  type="submit"
-                  className="w-full text-left px-2 py-1 text-lg text-red-500"
-                >
-                  Sign out
-                </button>
-              </form>
+                <LogOut />
+                Log out
+              </div>
             </div>
           ) : (
             <SheetClose asChild>

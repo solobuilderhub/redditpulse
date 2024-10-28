@@ -6,9 +6,7 @@ import { MainNav } from "./main-nav";
 import { UserNav } from "./user-nav";
 import { MobileNav } from "./mobile-nav";
 
-export async function Navbar() {
-  const session = await auth();
-
+export async function Navbar({ user }) {
   return (
     <header className="bg-background fixed top-0 left-0 w-full py-2 px-3 flex items-center justify-between z-30">
       <div className="flex items-center gap-3">
@@ -29,9 +27,9 @@ export async function Navbar() {
       <div className="flex items-center gap-4">
         <MainNav />
         <div className="hidden md:block">
-          <UserNav session={session} />
+          <UserNav user={user} />
         </div>
-        <MobileNav session={session} />
+        <MobileNav user={user} />
       </div>
     </header>
   );

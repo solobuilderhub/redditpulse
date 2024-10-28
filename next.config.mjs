@@ -1,5 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "memegen-ai.s3.amazonaws.com",
+      },
+    ],
+  },
   redirects: async () => {
     return [
       {

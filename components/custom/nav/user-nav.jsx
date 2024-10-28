@@ -1,4 +1,4 @@
-// components/navbar/user-nav.tsx
+"use client";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,13 +7,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { LogOut } from "lucide-react";
+import { signOut } from "next-auth/react";
 
-export function UserNav({ session }) {
-  return session ? (
+export function UserNav({ user }) {
+  return user ? (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button className="py-1.5 px-2 h-fit font-normal" variant="secondary">
-          {session.user?.email}
+          {user?.email}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -22,23 +24,18 @@ export function UserNav({ session }) {
             Dashboard
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem className="p-1 z-50">
-          <form
-            className="w-full"
-            action={async () => {
-              "use server";
-              await signOut({
+        <DropdownMenuItem asChild>
+          <div
+            className="w-full "
+            onClick={() => {
+              signOut({
                 redirectTo: "/",
               });
             }}
           >
-            <button
-              type="submit"
-              className="w-full text-left px-1 py-0.5 text-red-500"
-            >
-              Sign out
-            </button>
-          </form>
+            <LogOut />
+            Log out
+          </div>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

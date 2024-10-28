@@ -68,7 +68,7 @@ export const data = {
       ],
     },
     { title: "AI Playground", url: "/dashboard/playground", icon: Bot },
-
+    { title: "Meme Generator", url: "/dashboard/generate-meme", icon: Frame },
     // {
     //   title: "Settings",
     //   url: "/dashboard/settings",

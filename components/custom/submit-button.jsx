@@ -13,6 +13,7 @@ export function SubmitButton({ children }) {
       type={pending ? "button" : "submit"}
       aria-disabled={pending}
       className="relative"
+      disabled={pending}
     >
       {children}
       {pending && (
