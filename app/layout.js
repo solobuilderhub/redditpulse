@@ -1,5 +1,4 @@
-import { Toaster } from "sonner";
-
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import "./globals.css";
 import Providers from "@/components/providers/Providers";
 
@@ -19,6 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
+        <GoogleAnalytics />
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -41,9 +41,28 @@ const CommentTracker = () => {
 
         const apiUrl = `https://www.reddit.com/r/${parsedUrl.subreddit}/comments/${parsedUrl.postId}/_/${parsedUrl.commentId}.json`;
         const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+          removeTrackedComment(comment.id);
+          return null;
+        }
+
         const data = await response.json();
+
+        // Enhanced checks for deleted/removed comments
+        if (
+          !data[1]?.data?.children?.[0]?.data || // No data
+          data[1].data.children.length === 0 || // Empty children array
+          data[1].data.children[0].kind === "more" || // "more" type instead of "t1" for comments
+          data[1].data.children[0].data.body === "[deleted]" || // Deleted by user
+          data[1].data.children[0].data.body === "[removed]" || // Removed by moderator
+          data[1].data.children[0].data.author === "[deleted]" // Deleted account
+        ) {
+          removeTrackedComment(comment.id);
+          return null;
+        }
+
         const commentData = data[1].data.children[0].data;
-        // console.log("commentData", commentData);
         return {
           ...comment,
           body: commentData.body,
@@ -54,25 +73,36 @@ const CommentTracker = () => {
         };
       } catch (error) {
         console.error("Error fetching comment status:", error);
+        // For network errors or other issues, we might want to keep the comment
+        // and just mark it as having an error rather than removing it
         return {
           ...comment,
           upvotes: 0,
           organicTraffic: 0,
-          affiliateStatus: "Error",
+          status: "Error",
           isFromManagedPost: isCommentFromManagedPost(comment.url),
         };
       }
     },
-    [isCommentFromManagedPost]
+    [isCommentFromManagedPost, removeTrackedComment]
   );
 
   const { refetch } = useQuery({
     queryKey: ["comments"],
     queryFn: async () => {
+      // console.log("Current tracked comments:", trackedComments);
       const updatedComments = await Promise.all(
-        trackedComments.map(fetchCommentStatus)
+        trackedComments.map(async (comment) => {
+          const result = await fetchCommentStatus(comment);
+          // console.log(`Comment ${comment.id} status:`, result);
+          return result;
+        })
       );
-      return updatedComments;
+      const filteredComments = updatedComments.filter(
+        (comment) => comment !== null
+      );
+      // console.log("Filtered comments after refresh:", filteredComments);
+      return filteredComments;
     },
     enabled: false,
   });
