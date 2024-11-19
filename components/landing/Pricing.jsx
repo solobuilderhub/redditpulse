@@ -40,6 +40,21 @@ const plans = [
     cta: "Become a Pro",
     href: "/auth/signup?plan=pro",
   },
+  {
+    name: "Redditor Pro",
+    price: "$120",
+    period: "quarterly",
+    features: [
+      { text: "Unlimited AI-generated comments", included: true },
+      { text: "Monitor unlimited subreddits", included: true },
+      { text: "Advanced sentiment analysis", included: true },
+      { text: "Maximum token consumption limit", included: true },
+      { text: "Karma optimization suggestions", included: true },
+      { text: "Priority support", included: true },
+    ],
+    cta: "Become a Pro",
+    href: "/auth/signup?plan=pro",
+  },
 ];
 
 export default function Pricing() {
@@ -55,7 +70,7 @@ export default function Pricing() {
         <p className="text-xl text-center mb-12 text-gray-700">
           Select the perfect plan to enhance your Reddit experience
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan, index) => (
             <motion.div
               key={index}
@@ -86,7 +101,9 @@ export default function Pricing() {
                         )}
                         <span
                           className={
-                            feature.included ? "text-gray-800" : "text-gray-500"
+                            feature.included
+                              ? "text-gray-800"
+                              : "text-gray-500"
                           }
                         >
                           {feature.text}
@@ -104,7 +121,8 @@ export default function Pricing() {
                     style={{
                       backgroundColor:
                         plan.name === "Redditor Pro" ? "#FF4500" : "white",
-                      color: plan.name === "Redditor Pro" ? "white" : "#FF4500",
+                      color:
+                        plan.name === "Redditor Pro" ? "white" : "#FF4500",
                       borderColor: "#FF4500",
                     }}
                     asChild

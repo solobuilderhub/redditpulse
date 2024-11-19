@@ -11,7 +11,7 @@ export const plans = [
     duration: "/month",
     features: [
       "5000 AI credits",
-      "99 LinkedIn User monitoring",
+      "99 Reddit User monitoring",
       "Priority support",
       "Advanced analytics",
       "Custom personas",
@@ -24,7 +24,7 @@ export const plans = [
     duration: "/3 months",
     features: [
       "Unlimited AI credits (Fair Use Policy)",
-      "Unlimited LinkedIn User monitoring",
+      "Unlimited Reddit User monitoring",
       "Priority support",
       "Advanced analytics with deeper insights",
       "Custom personas and templates",
@@ -71,7 +71,7 @@ const PricingCard = ({ email, userToken }) => {
           Upgrade to Pro
         </h2>
         <p className="text-center text-gray-600 mb-8">
-          Unlock all features and boost your LinkedIn engagement
+          Unlock all features and boost your Reddit engagement
         </p>
 
         <div className="bg-white rounded-xl shadow-xl overflow-hidden">
