@@ -5,14 +5,8 @@ import { revalidatePath } from "next/cache";
 
 export const promptAction = async (values, action, id = null) => {
   const session = await auth();
-  const { job, industry, niche, experience, expertise } = values;
-  const data = {
-    job,
-    industry,
-    niche,
-    experience,
-    expertise,
-  };
+  const { name, text } = values;
+  const data = { name, text };
 
   let response;
   if (action === "create") {
