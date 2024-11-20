@@ -43,7 +43,7 @@ const CommentTracker = () => {
         const response = await fetch(apiUrl);
 
         if (!response.ok) {
-          removeTrackedComment(comment.id);
+          // removeTrackedComment(comment.id);
           return null;
         }
 
@@ -58,7 +58,7 @@ const CommentTracker = () => {
           data[1].data.children[0].data.body === "[removed]" || // Removed by moderator
           data[1].data.children[0].data.author === "[deleted]" // Deleted account
         ) {
-          removeTrackedComment(comment.id);
+          // removeTrackedComment(comment.id);
           return null;
         }
 
