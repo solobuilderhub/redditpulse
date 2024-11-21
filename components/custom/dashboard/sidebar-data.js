@@ -58,6 +58,10 @@ export const data = {
           url: "/dashboard/reddit/subreddit-explorer",
         },
         {
+          title: "Comment Viewer",
+          url: "/dashboard/reddit/comment-viewer",
+        },
+        {
           title: "Comment Tracker",
           url: "/dashboard/reddit/comment-tracker",
         },

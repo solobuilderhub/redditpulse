@@ -1,5 +1,11 @@
 import { PageHeader } from "@/components/custom/dashboard/page-header";
-import { ArrowRight, MessageSquare, Layout, Target } from "lucide-react";
+import {
+  ArrowRight,
+  MessageSquare,
+  Layout,
+  Target,
+  TrainTrack,
+} from "lucide-react";
 import Link from "next/link";
 
 const RedditPage = async () => {
@@ -28,6 +34,13 @@ const RedditPage = async () => {
       description: "Monitor and engage with post comments",
       href: "/dashboard/reddit/comment-tracker",
       icon: MessageSquare,
+      color: "bg-purple-500",
+    },
+    {
+      title: "Comment Viewer",
+      description: "View recent comments of a user in one place",
+      href: "/dashboard/reddit/comment-viewer",
+      icon: TrainTrack,
       color: "bg-purple-500",
     },
   ];
